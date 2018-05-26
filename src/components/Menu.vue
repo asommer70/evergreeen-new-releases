@@ -1,15 +1,18 @@
 <template>
-  <ul class="dropdown menu" data-dropdown-menu>
-    <li><input name="server-url" type="text" value="" placeholder="Server URL" @:input="onInput" /></li>
-  </ul>
+  <div class="settings float-right">
+    <button class="button" type="button" data-toggle="settings-dropdown">&#x205E</button>
+    <div class="dropdown-pane" id="settings-dropdown" data-dropdown data-auto-focus="true">
+      <input name="server-url" type="text" value="" placeholder="Server URL" @:input="onInput" />
+    </div>
+  </div>
 </template>
 
-<script>
+<script> 
  export default {
    name: 'Menu',
    methods: {
      onInput: (e) => {
-       console.log('e.target.value:', e.target.value);
+       console.warn('e.target.value:', e.target.value);
      }
    }
  }

@@ -1,3 +1,11 @@
 @import '../node_modules/foundation-sites/scss/foundation';
 @import 'settings';
 @import 'includes';
+
+h1.title, div.settings {
+  display: inline-block;
+}
+
+a.settings {
+  font-size: 40px;
+}

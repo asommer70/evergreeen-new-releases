@@ -7,7 +7,7 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "vendor": "node vendor.js",
-    "sass": "sassc -m -t compressed  scss/main.scss ./public/assets/css/main.css",
+    "sass": "sassc -m auto -t compressed  scss/main.scss ./public/assets/css/main.css",
     "sass:watch": "./sass_watcher.sh"
   },
   "dependencies": {

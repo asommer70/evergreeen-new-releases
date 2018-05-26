@@ -1,7 +1,8 @@
 <template>
   <div>
-    <h1>Evergreen New Releases</h1>
+    <h1 class="title">Evergreen New Releases</h1>
     <Menu />
+    <hr/>
   </div>
 </template>
 
