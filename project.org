@@ -1,6 +1,6 @@
 
 * To Do
-** TODO Setup Foundation.
+** DONE Setup Foundation.
 ** TODO Save server base URL to localStorage.
 ** TODO Create a refresh button on the main page.
 ** TODO Get a list of new DVDs from the RSS feed.
