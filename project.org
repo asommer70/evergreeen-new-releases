@@ -1,0 +1,9 @@
+
+* To Do
+** TODO Setup Foundation.
+** TODO Save server base URL to localStorage.
+** TODO Create a refresh button on the main page.
+** TODO Get a list of new DVDs from the RSS feed.
+** TODO Get a poster for each DVD from the API I found that time...
+** TODO Display the DVDs in a grid.
+** TODO Link to their page in the library for placing On Hold, getting more info, etc.

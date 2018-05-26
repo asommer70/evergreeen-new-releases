@@ -5,9 +5,14 @@
   "scripts": {
     "serve": "vue-cli-service serve --open",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "vendor": "node vendor.js",
+    "sass": "sassc -m -t compressed  scss/main.scss ./public/assets/css/main.css",
+    "sass:watch": "./sass_watcher.sh"
   },
   "dependencies": {
+    "foundation-sites": "^6.4.4-rc1",
+    "jquery": "^3.3.1",
     "vue": "^2.5.16"
   },
   "devDependencies": {
