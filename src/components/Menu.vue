@@ -3,7 +3,7 @@
     <button class="button" type="button" data-toggle="settings-dropdown">&#x205E;</button>
     <div class="dropdown-pane" id="settings-dropdown" data-dropdown data-auto-focus="true">
       <label for="server-url">Library URL</label>
-      <input name="server-url" id="server-url" type="text" value="{{props.localUrl}}" placeholder="http://... " v-on:keyup.enter="onSubmit" />
+      <input name="server-url" id="server-url" type="text" :value="url" placeholder="http://... " v-on:keyup.enter="onSubmit" />
     </div>
   </div>
 </template>
@@ -12,7 +12,7 @@
  export default {
    name: 'Menu',
    props: [
-     localUrl
+     "url"
    ],
    methods: {
      onSubmit(event) {

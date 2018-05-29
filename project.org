@@ -1,7 +1,7 @@
 
 * To Do
 ** DONE Setup Foundation.
-** TODO Save server base URL to localStorage.
+** DONE Save server base URL to localStorage.
 ** TODO Create a refresh button on the main page.
 ** TODO Get a list of new DVDs from the RSS feed.
 ** TODO Get a poster for each DVD from the API I found that time...

@@ -11,5 +11,6 @@ fs.createReadStream('./node_modules/foundation-sites/dist/js/foundation.min.js')
   .pipe(fs.createWriteStream(assets + 'foundation.min.js'));
 
 fs.createReadStream('./node_modules/jquery/dist/jquery.min.js')
-  .pipe(fs.createWriteStream(assets + 'jquery.min.js'));
+    .pipe(fs.createWriteStream(assets + 'jquery.min.js'));
+
 
