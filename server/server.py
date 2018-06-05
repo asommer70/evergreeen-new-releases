@@ -2,12 +2,16 @@ from flask import Flask
 from flask import jsonify
 from flask_cors import CORS
 from bs4 import BeautifulSoup
+import threading
+from queue import Queue
 import requests
-import delegator
 
 
 app = Flask(__name__)
 cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
+request_lock = threading.Lock()
+q = Queue()
+data_dvds = []
 
 
 @app.route('/api')
@@ -25,16 +29,35 @@ def api():
     titles = [title.string.split('[videorecording]')[0].strip()
               for title in titles]
 
-    # Use coroutines to get additional info for each title.
+    # Use threads to get additional info for each title.
+    for x in range(4):
+        t = threading.Thread(target=threader)
+        # t.daemon = True
+        t.start()
+
     dvds = []
     for title in titles:
-        dvds.append({'title': title, 'wiki_matches': search_wiki(title)})
+        q.put(title)
         
-    return jsonify(dvds)
+    dvds.append(q.join())
+
+    #dvds = data_dvds
+    #data_dvds = []
+    return jsonify(data_dvds)
+
+
+def threader():
+    while True:
+        title = q.get()
+        #data_dvds.append(search_wiki(title))
+        search_wiki(title)
+        q.task_done()
 
 
 def search_wiki(title):
+    print('async search_wiki title:', title)
     url = 'https://en.wikipedia.org/w/api.php?action=opensearch&format=json&search=' + title + ' film'
+
     res = requests.get(url)
     data = res.json()
 
@@ -47,13 +70,7 @@ def search_wiki(title):
             'image': get_image(hit)
         })
 
-    print('hits:', hits)
-    # return {
-    #     'title': title,
-    #     'description:' description,
-    #     'wiki_url': wiki_url
-    # }
-    return hits
+        return hits
 
 
 def get_image(title):
@@ -67,11 +84,9 @@ def get_image(title):
         image_name = data['query']['pages'][page_id]['pageprops']['page_image']
         
         image_page_url = 'https://en.wikipedia.org/w/api.php?action=query&prop=imageinfo&iiprop=url&format=json&titles=Image:' + image_name
-        print('image_page_url:', image_page_url)
         image_res = requests.get(image_page_url)
         image_data = image_res.json()
         image_page_id = [key for key in image_data['query']['pages']][0]
-        print('image_page_id:', image_page_id)
         image_url = image_data['query']['pages'][image_page_id]['imageinfo'][0]['url']
     except KeyError:
         pass
